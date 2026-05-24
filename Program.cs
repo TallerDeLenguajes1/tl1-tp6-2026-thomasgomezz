@@ -1,42 +1,87 @@
-﻿Console.WriteLine("Hello, World!");
+﻿
+    //Ejercicio 2
 
-int a;
+    bool continuar = true;
 
-int b;
-
-a = 10;
-b = a;
-
-Console.WriteLine("Valor de a:" + a);
-
-Console.WriteLine("Valor de b:" + b);
-
-
-Console.WriteLine("Ingrese un numero:");
-
-string texto = Console.ReadLine();
-
-int numero;
-
-if(int.TryParse(texto, out numero))
+    while(continuar)
 {
-    if(numero > 0)
-    {
-        int invertido = 0;
+    Console.WriteLine("----CALCULADORA----");
+    Console.WriteLine("- Sumar"); 
+    Console.WriteLine("2- Restar"); 
+    Console.WriteLine("3- Multiplicar");    
+    Console.WriteLine("4- Dividir"); 
+    Console.WriteLine("Seleccione una opcion: ");
 
-        while(numero > 0)
+    string opcionTexto = Console.ReadLine(); 
+
+    int opcion;
+
+    if (int.TryParse(opcionTexto, out opcion))
+    {
+        if(opcion >= 1 && opcion <= 4)
         {
-            int digito = numero % 10;
-            invertido = invertido * 10 + digito;
-            numero = numero / 10;
+            Console.WriteLine("Ingrese el primer numero:");
+            string texto1 = Console.ReadLine();
+
+            Console.WriteLine("Ingrese el segundo numero: ");
+            string texto2 = Console.ReadLine();
+
+            double num1;
+            double num2; 
+
+            if(double.TryParse(texto1, out num1) && double.TryParse(texto2, out num2))
+            {
+                double resultado = 0;
+
+                switch(opcion)
+                {
+                    case 1: 
+                            resultado = num1 + num2;
+                            Console.WriteLine("Resultado : " + resultado);
+                            break;
+
+                    case 2: 
+                            resultado = num1 - num2;
+                            Console.WriteLine("Resultado: " + resultado);
+                            break;
+                    
+                    case 3: 
+                            resultado = num1 * num2;
+                            Console.WriteLine("Resultado :" + resultado);
+                            break;
+
+                    case 4:
+                            if(num2 != 0)
+                            {
+                                resultado = num1 / num2;
+                                Console.WriteLine("Resultado: " + resultado);
+                            }else
+                                {
+                                    Console.WriteLine("No se puede dividir por cero.");
+                                }
+                                break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Debe ingresar numeros validos.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Opcion invalida.");
         }
 
-        Console.WriteLine("Numero invertido:" + invertido);
     }else
     {
-        Console.WriteLine("El numero debe ser mayor a 0.");
+        Console.WriteLine("Debe ingresar un numero de opcion.");
     }
-}else
+
+    Console.WriteLine("Desea realizar otro calculo? (s/n) :");
+    
+    string respuesta = Console.ReadLine();
+    if (respuesta.ToLower() != "s")
     {
-        Console.WriteLine("Lo ingresado no es un numero válido.");
+        continuar = false;
     }
+}
