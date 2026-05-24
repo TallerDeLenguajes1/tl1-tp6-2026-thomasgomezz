@@ -1,42 +1,50 @@
-﻿Console.WriteLine("Hello, World!");
-
-int a;
-
-int b;
-
-a = 10;
-b = a;
-
-Console.WriteLine("Valor de a:" + a);
-
-Console.WriteLine("Valor de b:" + b);
-
-
-Console.WriteLine("Ingrese un numero:");
+﻿Console.WriteLine("Ingrese un numero: ");
 
 string texto = Console.ReadLine();
 
-int numero;
+double numero;
 
-if(int.TryParse(texto, out numero))
+if (double.TryParse(texto, out numero))
 {
-    if(numero > 0)
+    Console.WriteLine("Valor absoluto: " + Math.Abs(numero));
+
+    Console.WriteLine("Cuadrado: " + Math.Pow(numero, 2));
+
+    if(numero >= 0)
     {
-        int invertido = 0;
-
-        while(numero > 0)
-        {
-            int digito = numero % 10;
-            invertido = invertido * 10 + digito;
-            numero = numero / 10;
-        }
-
-        Console.WriteLine("Numero invertido:" + invertido);
+        Console.WriteLine("Raiz cuadrada: " + Math.Sqrt(numero));
     }else
     {
-        Console.WriteLine("El numero debe ser mayor a 0.");
+        Console.WriteLine("No se puede calcular la raiz de un numero negativo.");
     }
+
+    Console.WriteLine("Seno: " + Math.Sin(numero));
+
+    Console.WriteLine("Coseno: " + Math.Cos(numero));
+
+    Console.WriteLine("Parte entera: " + Math.Truncate(numero));
+}
+else
+{
+    Console.WriteLine("Debe ingresar un numero valido.");
+}
+
+Console.WriteLine("Ingrese el primer numero: ");
+string texto1 = Console.ReadLine();
+
+Console.WriteLine("Ingrese el segundo numero");
+
+string texto2 = Console.ReadLine();
+
+double num1;
+double num2;
+
+if((double.TryParse(texto, out num1)) && (double.TryParse(texto2, out num2)))
+{
+    Console.WriteLine("Maximo: " + Math.Max(num1, num2));
+
+    Console.WriteLine("Minimo: " + Math.Min(num1, num2));
 }else
-    {
-        Console.WriteLine("Lo ingresado no es un numero válido.");
-    }
+{
+    Console.WriteLine("Debe ingresar un numero valido.");
+}
