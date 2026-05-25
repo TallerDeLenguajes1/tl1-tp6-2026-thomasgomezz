@@ -1,3 +1,5 @@
+using System.Data;
+
 Console.WriteLine("Hello, World!");
 
 int a;
@@ -49,7 +51,7 @@ if(int.TryParse(texto, out numero))
     while(continuar)
 {
     Console.WriteLine("----CALCULADORA----");
-    Console.WriteLine("- Sumar"); 
+    Console.WriteLine("1- Sumar"); 
     Console.WriteLine("2- Restar"); 
     Console.WriteLine("3- Multiplicar");    
     Console.WriteLine("4- Dividir"); 
@@ -80,24 +82,29 @@ if(int.TryParse(texto, out numero))
                 {
                     case 1: 
                             resultado = num1 + num2;
-                            Console.WriteLine("Resultado : " + resultado);
+                            Console.WriteLine("La suma de " + num1 + " y de " + num2 + " es igual a: " + resultado);
                             break;
 
                     case 2: 
                             resultado = num1 - num2;
-                            Console.WriteLine("Resultado: " + resultado);
+                            //Console.WriteLine("Resultado: " + resultado);
+                            Console.WriteLine("La resta de " + num1 + " y de " + num2 + " es igual a: " + resultado);
                             break;
+                            
                     
                     case 3: 
                             resultado = num1 * num2;
-                            Console.WriteLine("Resultado :" + resultado);
+                           // Console.WriteLine("Resultado :" + resultado);
+                           Console.WriteLine("La multiplicacion de " + num1 + " y de " + num2 + " es igual a: " + resultado);
                             break;
 
                     case 4:
                             if(num2 != 0)
                             {
                                 resultado = num1 / num2;
-                                Console.WriteLine("Resultado: " + resultado);
+                                //Console.WriteLine("Resultado: " + resultado);
+                                Console.WriteLine("La division de " + num1 + " y de " + num2 + " es igual a: " + resultado);
+                                break;
                             }else
                                 {
                                     Console.WriteLine("No se puede dividir por cero.");
@@ -181,4 +188,86 @@ if((double.TryParse(textoNum1, out numero1)) && (double.TryParse(textoNum2, out 
 }else
 {
     Console.WriteLine("Debe ingresar un numero valido.");
+}
+
+
+//Ejercicio 4
+
+Console.WriteLine("Ingrese una cadena de texto: ");
+string cadena = Console.ReadLine();
+
+Console.WriteLine("Longitud de la cadena: " + cadena.Length);
+
+//Concatenar
+
+Console.WriteLine("Ingrese otra cadena: ");
+
+string cadena2 = Console.ReadLine();
+
+string concatenada = cadena + " " + cadena2;
+
+Console.WriteLine("Cadena concatenada : " + concatenada);
+
+
+//Subcadena
+
+if(cadena.Length >= 3)
+{
+    string subcadena = cadena.Substring(0 , 3);
+    Console.WriteLine("Subcadena: " + subcadena);
+}
+
+//Recorrer con foreach
+
+Console.WriteLine("Recorriendo la cadena:");
+foreach(char letra in cadena)
+{
+    Console.WriteLine(letra);
+}
+
+//Buscar palabra
+Console.WriteLine("Ingrese una palabra para buscar: ");
+
+string palabra = Console.ReadLine();
+
+if(cadena.Contains(palabra))
+{
+    Console.WriteLine("La palabra existe en la cadena.");
+}
+else
+{
+    Console.WriteLine("La palabra no existe.");
+}
+
+//Convertir cadena a mayuscula y miniscula
+
+Console.WriteLine("Cadena en Mayusculas: " + cadena.ToUpper());
+
+Console.WriteLine("Cadena en Minusculas: " + cadena.ToLower());
+
+//Split
+Console.WriteLine("Ingrese palabras separadas por coma:");
+string textoSplit = Console.ReadLine();
+
+string [] partes = textoSplit.Split(',');
+
+foreach(string parte in partes)
+{
+    Console.WriteLine(parte.Trim());
+}
+
+//Ecuacion simple
+
+Console.WriteLine("Ingrese una ecuacion simple: ");
+string ecuacion = Console.ReadLine();
+
+if(ecuacion.Contains("+"))  //contains: verifica si la ecuacion tiene ()
+{
+    string [] numeros = ecuacion.Split('+');    //split: divide por partes donde esta()
+
+    int num1 = int.Parse(numeros[0]);       //int.parse para convertir un texto a numero entero-- numero[0] = primer numero antes de +
+    int num2 = int.Parse(numeros[1]);
+    int resultado  =num1 + num2;
+
+    Console.WriteLine("Resultado : " + resultado );
 }
